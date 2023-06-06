@@ -8,6 +8,7 @@ const PlatformIOS = Platform.OS === 'ios';
 
 export default class RichTextEditor extends Component {
   static defaultProps = {
+    data:'',
     contentInset: {},
     style: {},
     placeholder: '',
@@ -63,6 +64,7 @@ export default class RichTextEditor extends Component {
         html:
           html ||
           createHTML({
+            data,
             backgroundColor,
             color,
             caretColor,
