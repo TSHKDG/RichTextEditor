@@ -20,6 +20,7 @@ function getContentCSS() {
 
 function createHTML(options = {}) {
   const {
+    data= '',
     backgroundColor = '#FFF',
     color = '#000033',
     caretColor = '',
@@ -67,7 +68,7 @@ function createHTML(options = {}) {
     <style>${cssText}</style>
 </head>
 <body>
-<div class="content"><div id="editor" class="pell"/></div>
+<div class="content"><div id="editor" class="pell"/>${data}</div>
 <script>
     var __DEV__ = !!${window.__DEV__};
     var _ = (function (exports) {
