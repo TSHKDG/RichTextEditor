@@ -143,7 +143,7 @@ export default class RichTextEditor extends Component {
 
   onMessage(event) {
     const that = this;
-    const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink} = that.props;
+    const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection} = that.props;
     try {
       const message = JSON.parse(event.nativeEvent.data);
       const data = message.data;
@@ -167,6 +167,7 @@ export default class RichTextEditor extends Component {
           break;
         case messages.SELECTION_CHANGE:
           const items = message.data;
+          onSelection?.(items)
           that.selectionChangeListeners.map(listener => {
             listener(items);
           });
