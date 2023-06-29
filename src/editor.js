@@ -648,6 +648,9 @@ function createHTML(options = {}) {
                     if (ele.checked) ele.setAttribute('checked', '');
                     else ele.removeAttribute('checked');
                 }
+                if(ele.nodeName === 'INPUT' && ele.type === 'button'){
+                    postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
+                }
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
                 }
