@@ -562,7 +562,7 @@ function createHTML(options = {}) {
             }
 
             function handler() {
-                console.log(';;;;;')
+                console.log('function handler()')
                 var activeTools = [];
                 for(var k in actionsHandler){
                     const state =  Actions[k].state() 
@@ -583,6 +583,7 @@ function createHTML(options = {}) {
             }
 
             function handleSelecting(event){
+                console.log('function handleSelecting(event)')
                 event.stopPropagation();
                 handleState();
             }
@@ -591,12 +592,14 @@ function createHTML(options = {}) {
                 postAction({type: type, data: {keyCode: event.keyCode, key: event.key}});
             }
             function handleKeyup(event){
+                console.log('function handleKeyup(event)')
                 enterStatus = 0;
                 _keyDown = false;
                 if (event.keyCode === 8) handleSelecting (event);
                 ${keyUpListener} && postKeyAction(event, "CONTENT_KEYUP")
             }
             function handleKeydown(event){
+                console.log('function handleKeydown(event)')
                 _keyDown = true;
                  handleState();
                 if (event.key === 'Enter'){
@@ -631,6 +634,7 @@ function createHTML(options = {}) {
                 ${keyDownListener} && postKeyAction(event, "CONTENT_KEYDOWN");
             }
             function handleFocus (){
+                console.log('function handleFocus()')
                 editorFoucs = true;
                 setTimeout(function (){
                     Actions.UPDATE_OFFSET_Y();
