@@ -594,7 +594,7 @@ function createHTML(options = {}) {
                     range.selectNode(link)
                     selection.addRange(range);
                   }
-                 }
+                }
 
                 event.stopPropagation();
                 handleState();
