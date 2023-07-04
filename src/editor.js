@@ -585,20 +585,24 @@ function createHTML(options = {}) {
             function handleSelecting(event){
                 const selection = window.getSelection();
                 const container = document.getElementById('content');
-                const range = selection.getRangeAt(0);
                 const links = container.getElementsByTagName('a');
-            
+
                 for (let i = 0; i < links.length; i++) {
-                  let link = links[i];
-                  if (selection.containsNode(link, true) && link.getAttribute('id')) {
-                    range.selectNode(link)
-                    selection.addRange(range);
-                  }
+                    let link = links[i];
+                    if (selection.containsNode(link, true) && link.getAttribute('id')) {
+                        selection.addRange(createRange(link));
+                    }
                 }
 
                 event.stopPropagation();
                 handleState();
             }
+
+            function createRange(element) {
+                const range = document.createRange();
+                range.selectNode(element);
+                return range;
+              }
 
             function postKeyAction(event, type){
                 postAction({type: type, data: {keyCode: event.keyCode, key: event.key}});
