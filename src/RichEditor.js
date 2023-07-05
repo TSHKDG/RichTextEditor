@@ -143,7 +143,7 @@ export default class RichTextEditor extends Component {
 
   onMessage(event) {
     const that = this;
-    const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection} = that.props;
+    const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
       const message = JSON.parse(event.nativeEvent.data);
       const data = message.data;
@@ -159,6 +159,9 @@ export default class RichTextEditor extends Component {
             }
           }
           break;
+        case messages.FIND_TABLE:
+          onTableFocus?.(data);
+          break;
         case messages.LINK_TOUCHED:
           onLink?.(data);
           break;
@@ -167,7 +170,7 @@ export default class RichTextEditor extends Component {
           break;
         case messages.SELECTION_CHANGE:
           const items = message.data;
-          onSelection?.(items)
+          onSelection, onTableFocus?.(items)
           that.selectionChangeListeners.map(listener => {
             listener(items);
           });
