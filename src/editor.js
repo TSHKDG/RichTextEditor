@@ -661,12 +661,12 @@ function createHTML(options = {}) {
             }
             function handleClick(event){
                 var ele = event.target;
-                
+
                 const eleName = ele.parentNode.parentNode
                 let nodeElemenet = {}
-                if(eleName === 'TBODY'){
+                if(eleName.nodeName === 'TBODY'){
                     nodeElemenet = eleName
-                }else if(eleName === 'TR'){
+                }else if(eleName.nodeName === 'TR'){
                     nodeElemenet = eleName.parentElement
                 }else{
                     nodeElemenet = false
