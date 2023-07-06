@@ -664,15 +664,20 @@ function createHTML(options = {}) {
 
                 const eleName = ele.parentNode.parentNode
                 let nodeElemenet = {}
+                let status = false
+
                 if(eleName.nodeName === 'TBODY'){
                     nodeElemenet = eleName
+                    status = true
                 }else if(eleName.nodeName === 'TR'){
                     nodeElemenet = eleName.parentElement
+                    status = true
                 }else{
-                    nodeElemenet = false
+                    nodeElemenet = {}
+                    status = false
                 }
 
-                postAction({type: 'FIND_TABLE', data: nodeElemenet});
+                postAction({type: 'FIND_TABLE', data: {status: status, info: nodeElemenet}});
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
