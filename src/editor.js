@@ -661,10 +661,7 @@ function createHTML(options = {}) {
             }
             function handleClick(event){
                 var ele = event.target;
-                console.log(ele.nodeName)
-                console.log(ele.parentNode.nodeName)
-                console.log(ele.parentNode.parentNode.nodeName)
-                postAction({type: 'FIND_TABLE', data: ele.nodeName === 'TBODY'});
+                postAction({type: 'FIND_TABLE', data: (ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')});
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
