@@ -661,6 +661,7 @@ function createHTML(options = {}) {
             }
             function handleClick(event){
                 var ele = event.target;
+                console.log(ele.nodeName)
                 postAction({type: 'FIND_TABLE', data:ele.nodeName === 'TBODY'});
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
