@@ -661,7 +661,18 @@ function createHTML(options = {}) {
             }
             function handleClick(event){
                 var ele = event.target;
-                postAction({type: 'FIND_TABLE', data: (ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')});
+                
+                const eleName = ele.parentNode.parentNode
+                let nodeElemenet = {}
+                if(eleName === 'TBODY'){
+                    nodeElemenet = eleName
+                }else if(eleName === 'TR'){
+                    nodeElemenet = eleName.parentElement
+                }else{
+                    nodeElemenet = false
+                }
+
+                postAction({type: 'FIND_TABLE', data: nodeElemenet});
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
