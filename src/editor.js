@@ -661,8 +661,8 @@ function createHTML(options = {}) {
             }
             function handleClick(event){
                 var ele = event.target;
-                const element = ele.parentNode.parentNode.
-                conat nodeName = element.nodeName
+                var element = ele.parentNode.parentNode.
+                var nodeName = element.nodeName
                 if(nodeName === 'TBODY'){
                     console.log(element.parentNode.getAttribute('id'))
                 }else if(nodeName === 'TR'){
