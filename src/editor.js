@@ -663,7 +663,6 @@ function createHTML(options = {}) {
                 var ele = event.target;
 
                 const eleName = ele.parentNode.parentNode
-                let nodeElemenet = {}
                 let status = false
 
                 if(eleName.nodeName === 'TBODY'){
@@ -677,7 +676,7 @@ function createHTML(options = {}) {
                     status = false
                 }
 
-                postAction({type: 'FIND_TABLE', data: {status: status, info: nodeElemenet}});
+                postAction({type: 'FIND_TABLE', data: {status: status, info: status ? eleName : null}});
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
