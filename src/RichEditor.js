@@ -170,7 +170,7 @@ export default class RichTextEditor extends Component {
           break;
         case messages.SELECTION_CHANGE:
           const items = message.data;
-          onSelection, onTableFocus?.(items)
+          onSelection?.(items)
           that.selectionChangeListeners.map(listener => {
             listener(items);
           });
