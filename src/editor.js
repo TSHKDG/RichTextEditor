@@ -675,13 +675,35 @@ function createHTML(options = {}) {
                             status: true,
                             data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
                         }
-                    console.log(this,event.target.nodeName)
+
+                        var table = document.getElementById('ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')');
+                        var focusedCellIndex = -1; // Default value for the focused cell index
+
+                        var cells = table.getElementsByTagName("td");
+                        for (var i = 0; i < cells.length; i++) {
+                            cells[i].addEventListener("focus", function() {
+                                focusedCellIndex = this.cellIndex;
+                            });
+                        }
+                        console.log(focusedCellIndex)
+
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
                             status: true,
                             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
                         }
-                        console.log(this,event.target.nodeName)
+                       
+                        var table = document.getElementById('ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')');
+                        var focusedCellIndex = -1; // Default value for the focused cell index
+
+                        var cells = table.getElementsByTagName("td");
+                        for (var i = 0; i < cells.length; i++) {
+                            cells[i].addEventListener("focus", function() {
+                                focusedCellIndex = this.cellIndex;
+                            });
+                        }
+                        console.log(focusedCellIndex)
+
                     }
                 }
 
