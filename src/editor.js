@@ -654,15 +654,37 @@ function createHTML(options = {}) {
                 });
                 postAction({type: 'CONTENT_FOCUSED'});
             }
+            
             function handleBlur (){
                 editorFoucs = false;
                 postAction({type: 'SELECTION_CHANGE', data: []});
                 postAction({type: 'CONTENT_BLUR'});
             }
+
             function handleClick(event){
                 var ele = event.target;
-                console.log(ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id'),ele.parentNode.parentNode.parentNode.getAttribute('id') )
-                postAction({type: 'FIND_TABLE', data: (ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')});
+
+                if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
+                    let newInfo = {}
+                    if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
+                        newInfo = {
+                            status: true,
+                            data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
+                        }
+                    }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
+                        newInfo = {
+                            status: true,
+                            data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
+                        }
+                    }else{
+                        newInfo = {
+                            status: false,
+                            data: ''
+                        }
+                    }
+                    postAction({type: 'FIND_TABLE', data: newInfo});
+                }
+
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
