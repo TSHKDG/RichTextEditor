@@ -680,16 +680,11 @@ function createHTML(options = {}) {
                             status: true,
                             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
                         }
-                    }else{
-                        newInfo = {
-                            status: false,
-                            data: ''
-                        }
                     }
                 }
 
                 postAction({type: 'FIND_TABLE', data: newInfo});
-                
+
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
