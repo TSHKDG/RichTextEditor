@@ -142,7 +142,6 @@ export default class RichTextEditor extends Component {
     }*/
 
   onMessage(event) {
-    console.log(event.nativeEvent.data)
     const that = this;
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
