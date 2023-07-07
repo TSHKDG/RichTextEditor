@@ -675,11 +675,13 @@ function createHTML(options = {}) {
                             status: true,
                             data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
                         }
+                    console.log(this,event.target.nodeName)
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
                             status: true,
                             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
                         }
+                        console.log(this,event.target.nodeName)
                     }
                 }
 
