@@ -654,7 +654,7 @@ function createHTML(options = {}) {
                 });
                 postAction({type: 'CONTENT_FOCUSED'});
             }
-            
+
             function handleBlur (){
                 editorFoucs = false;
                 postAction({type: 'SELECTION_CHANGE', data: []});
@@ -664,8 +664,12 @@ function createHTML(options = {}) {
             function handleClick(event){
                 var ele = event.target;
 
+                let newInfo = { 
+                    status: false,
+                    data: ''
+                }
+
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
-                    let newInfo = {}
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
                             status: true,
@@ -682,9 +686,10 @@ function createHTML(options = {}) {
                             data: ''
                         }
                     }
-                    postAction({type: 'FIND_TABLE', data: newInfo});
                 }
 
+                postAction({type: 'FIND_TABLE', data: newInfo});
+                
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
