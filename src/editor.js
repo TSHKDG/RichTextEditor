@@ -676,7 +676,7 @@ function createHTML(options = {}) {
                             data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
                         }
 
-                        var table = document.getElementById('ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')');
+                        var table = document.getElementById(ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id'));
                         var focusedCellIndex = -1; // Default value for the focused cell index
 
                         var cells = table.getElementsByTagName("td");
@@ -693,7 +693,7 @@ function createHTML(options = {}) {
                             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
                         }
                        
-                        var table = document.getElementById('ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')');
+                        var table = document.getElementById(ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id'));
                         var focusedCellIndex = -1; // Default value for the focused cell index
 
                         var cells = table.getElementsByTagName("td");
