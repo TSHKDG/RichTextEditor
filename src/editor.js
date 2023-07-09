@@ -664,18 +664,8 @@ function createHTML(options = {}) {
             function handleClick(event){
                 var ele = event.target;
 
-                console.log("event.    ", event)
-                console.log(ele.nodeName)
-
-                if(document.activeElement === cell) {
-                    var index = cell.cellIndex;
-                    console.log("Focused cell index: " + index);
-                }
-
-                for (var i = 0; i < rows.length; i++) {
-                    var index = Array.prototype.indexOf.call(rows, this);
-                    console.log("Focused row index: " + index);
-                }
+                // console.log("event.    ", event)
+                // console.log(ele.nodeName)
 
 
                 let newInfo = { 
