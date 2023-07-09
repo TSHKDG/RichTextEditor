@@ -664,10 +664,6 @@ function createHTML(options = {}) {
             function handleClick(event){
                 var ele = event.target;
 
-                // console.log("event.    ", event)
-                // console.log(ele.nodeName)
-
-
                 let newInfo = { 
                     status: false,
                     data: ''
@@ -679,17 +675,11 @@ function createHTML(options = {}) {
                             status: true,
                             data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
                         }
-
-                        console.log(this.)
-
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
                             status: true,
                             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
-                        }
-                       
-                        console.log(this.)
-
+                        }  
                     }
                 }
 
