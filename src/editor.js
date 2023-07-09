@@ -755,11 +755,9 @@ function createHTML(options = {}) {
             defaultParagraphSeparator: '${defaultParagraphSeparator}',
             styleWithCSS: ${styleWithCSS},
             onChange: function (){
-                console.log(';;;;')
                 clearTimeout(_handleCTime);
                 _handleCTime = setTimeout(function(){
                     var html = Actions.content.getHtml();
-                    console.log(html)
                     postAction({type: 'CONTENT_CHANGE', data: html});
                 }, 50);
             }
