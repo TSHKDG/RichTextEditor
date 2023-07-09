@@ -759,6 +759,7 @@ function createHTML(options = {}) {
                 clearTimeout(_handleCTime);
                 _handleCTime = setTimeout(function(){
                     var html = Actions.content.getHtml();
+                    console.log(html)
                     postAction({type: 'CONTENT_CHANGE', data: html});
                 }, 50);
             }
