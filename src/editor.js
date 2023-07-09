@@ -664,9 +664,9 @@ function createHTML(options = {}) {
             function handleClick(event){
                 var ele = event.target;
 
-                console.log("event.    " + event)
+                console.log("event.    ", event)
                 console.log(ele.nodeName)
-                console.log('getRootNode.   ' + ele.getRootNode())
+
                 if(document.activeElement === cell) {
                     var index = cell.cellIndex;
                     console.log("Focused cell index: " + index);
