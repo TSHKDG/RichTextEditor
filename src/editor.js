@@ -664,6 +664,20 @@ function createHTML(options = {}) {
             function handleClick(event){
                 var ele = event.target;
 
+                console.log("event.    " + event)
+                console.log(ele.nodeName)
+                console.log('getRootNode.   ' + ele.getRootNode())
+                if(document.activeElement === cell) {
+                    var index = cell.cellIndex;
+                    console.log("Focused cell index: " + index);
+                }
+
+                for (var i = 0; i < rows.length; i++) {
+                    var index = Array.prototype.indexOf.call(rows, this);
+                    console.log("Focused row index: " + index);
+                }
+
+
                 let newInfo = { 
                     status: false,
                     data: ''
@@ -676,7 +690,7 @@ function createHTML(options = {}) {
                             data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
                         }
 
-                        console.log(this.cellIndex)
+                        console.log(this.)
 
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
@@ -684,7 +698,7 @@ function createHTML(options = {}) {
                             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
                         }
                        
-                        console.log(this.cellIndex)
+                        console.log(this.)
 
                     }
                 }
