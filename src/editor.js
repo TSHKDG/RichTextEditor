@@ -664,6 +664,8 @@ function createHTML(options = {}) {
             function handleClick(event){
                 var ele = event.target;
 
+                console.log(event.target)
+
                 let newInfo = { 
                     status: false,
                     data: ''
