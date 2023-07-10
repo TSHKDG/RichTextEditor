@@ -666,7 +666,7 @@ function createHTML(options = {}) {
                 // document.querySelectorAll("p").forEach((p) => {
                 //   p.style.color = event.target.value;
                 // });
-              }
+            }
 
             function handleClick(event){
                 var ele = event.target;
@@ -704,7 +704,7 @@ function createHTML(options = {}) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
                 }
             }
-            addEventListener("input", watchColorPicker, false);
+            addEventListener(content, "input", watchColorPicker);
             addEventListener(content, 'touchcancel', handleSelecting);
             addEventListener(content, 'mouseup', handleSelecting);
             addEventListener(content, 'touchend', handleSelecting);
