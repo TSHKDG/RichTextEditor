@@ -704,7 +704,7 @@ function createHTML(options = {}) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
                 }
             }
-            addEventListener(content, "input", watchColorPicker);
+            addEventListener(content, "change", watchColorPicker);
             addEventListener(content, 'touchcancel', handleSelecting);
             addEventListener(content, 'mouseup', handleSelecting);
             addEventListener(content, 'touchend', handleSelecting);
