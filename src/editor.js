@@ -669,10 +669,6 @@ function createHTML(options = {}) {
                     data: ''
                 }
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
-                    console.log('------- table -------')
-                    console.log(ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id'), ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length)
-                    console.log(ele.parentNode?.parentNode?.parentNode?.getAttribute('id'), ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length)
-                    console.log('--------------')
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
                             status: true,
@@ -697,7 +693,7 @@ function createHTML(options = {}) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
                 }
                 console.log('------a--------')
-                console.log('<a> nodeName _ ', ele.nodeName)
+                console.log('<a> nodeName _ ', ele.parentNode.nodeName)
                 console.log('<a> href _ ', ele.getAttribute('href'))
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
