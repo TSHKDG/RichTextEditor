@@ -670,6 +670,7 @@ function createHTML(options = {}) {
                 }
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
                     console.log(ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id'), ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length)
+                    console.log(ele.parentNode?.parentNode?.parentNode?.getAttribute('id'), ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length)
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                         newInfo = {
                             status: true,
