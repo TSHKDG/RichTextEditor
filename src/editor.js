@@ -692,11 +692,11 @@ function createHTML(options = {}) {
                 if(ele.nodeName === 'INPUT' && ele.type === 'button'){
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
                 }
-                console.log('------a--------')
-                console.log('<a> nodeName _ ', ele.parentNode.nodeName)
-                console.log('<a> href _ ', ele.parentNode.getAttribute('href'))
+                
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
+                }else if((ele.parentNode.nodeName === 'A' && ele.parentNode.getAttribute('href')){
+                    postAction({type: 'LINK_TOUCHED', data: ele.parentNode.getAttribute('href')});
                 }
             }
             addEventListener(content, 'touchcancel', handleSelecting);
