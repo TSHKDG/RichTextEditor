@@ -694,7 +694,7 @@ function createHTML(options = {}) {
                 }
                 console.log('------a--------')
                 console.log('<a> nodeName _ ', ele.parentNode.nodeName)
-                console.log('<a> href _ ', ele.getAttribute('href'))
+                console.log('<a> href _ ', ele.parentNode.getAttribute('href'))
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
                 }
