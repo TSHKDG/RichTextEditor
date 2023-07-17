@@ -692,10 +692,10 @@ function createHTML(options = {}) {
                 if(ele.nodeName === 'INPUT' && ele.type === 'button'){
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
                 }
-                
+
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
-                }else if((ele.parentNode.nodeName === 'A' && ele.parentNode.getAttribute('href')){
+                }else if((ele?.parentNode?.nodeName === 'A' && ele?.parentNode?.getAttribute('href')){
                     postAction({type: 'LINK_TOUCHED', data: ele.parentNode.getAttribute('href')});
                 }
             }
