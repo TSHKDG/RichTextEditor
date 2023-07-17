@@ -696,9 +696,6 @@ function createHTML(options = {}) {
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
                 }
-                if((ele?.parentNode?.nodeName === 'A'){
-                if(ele?.parentNode?.getAttribute('href'))  postAction({type: 'LINK_TOUCHED', data: ele?.parentNode?.getAttribute('href')});
-                }
             }
             addEventListener(content, 'touchcancel', handleSelecting);
             addEventListener(content, 'mouseup', handleSelecting);
