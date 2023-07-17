@@ -693,10 +693,12 @@ function createHTML(options = {}) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
                 }
 
-
+console.log('.........')
+console.log(ele?.parentNode.nodeName)
                 if (ele.nodeName === 'A' && ele.getAttribute('href')) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
                 }else if((ele?.parentNode?.nodeName === 'A'){
+console.log(ele?.parentNode.nodeName)
                   if(ele?.parentNode?.getAttribute('href'))  postAction({type: 'LINK_TOUCHED', data: ele?.parentNode?.getAttribute('href')});
                 }
             }
