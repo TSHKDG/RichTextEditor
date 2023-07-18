@@ -693,8 +693,8 @@ function createHTML(options = {}) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
                 }
 
-                if (ele.nodeName === 'A' && ele.getAttribute('href')) {
-                    postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href')});
+                if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A')&& ele.getAttribute('href')) {
+                    postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('href') || ele.parentNode?.getAttribute('href')});
                 }
             }
             addEventListener(content, 'touchcancel', handleSelecting);
