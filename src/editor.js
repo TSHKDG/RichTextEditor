@@ -708,8 +708,12 @@ function createHTML(options = {}) {
             addEventListener(content, 'paste', function (e) {
                 e.preventDefault();
                 let text = (e.clipboardData || window.clipboardData).getData("text");
+                const selection = window.getSelection();
+                if (!selection.rangeCount) return;
+                selection.deleteFromDocument();
+                selection.getRangeAt(0).insertNode(document.createTextNode(text));
+                selection.collapseToEnd()
                 ${pasteListener} && postAction({type: 'CONTENT_PASTED', data: text});
-                
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
