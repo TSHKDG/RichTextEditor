@@ -706,6 +706,9 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
+                console.log(${pasteListener})
+           if(${pasteListener})    
+           { 
                 e.preventDefault();
                 let text = (e.clipboardData || window.clipboardData).getData("text");
                 const selection = window.getSelection();
@@ -713,7 +716,7 @@ function createHTML(options = {}) {
                 selection.deleteFromDocument();
                 selection.getRangeAt(0).insertNode(document.createTextNode(text));
                 selection.collapseToEnd()
-                ${pasteListener} && postAction({type: 'CONTENT_PASTED', data: text});
+            }
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
