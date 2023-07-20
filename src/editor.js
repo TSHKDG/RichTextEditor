@@ -706,17 +706,17 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                console.log(${pasteListener})
-           if(${pasteListener})    
-           { 
-                e.preventDefault();
-                let text = (e.clipboardData || window.clipboardData).getData("text");
-                const selection = window.getSelection();
-                if (!selection.rangeCount) return;
-                selection.deleteFromDocument();
-                selection.getRangeAt(0).insertNode(document.createTextNode(text));
-                selection.collapseToEnd()
-            }
+                if(${pasteListener})    
+                { 
+                        e.preventDefault();
+                        let text = (e.clipboardData || window.clipboardData).getData("text");
+                        const selection = window.getSelection();
+                        if (!selection.rangeCount) return;
+                        selection.deleteFromDocument();
+                        selection.getRangeAt(0).insertNode(document.createTextNode(text));
+                        selection.collapseToEnd()
+                        exec('insertHTML', '')
+                }
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
