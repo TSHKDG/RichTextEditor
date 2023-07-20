@@ -714,7 +714,7 @@ function createHTML(options = {}) {
                     // cancel paste
                     e.preventDefault();
                     // insert text manually
-                    exec("insertText", text);
+                  //  exec("insertText", text); close and do in
                 }
             });
             addEventListener(content, 'compositionstart', function(event){
