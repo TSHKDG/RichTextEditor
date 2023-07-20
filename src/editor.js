@@ -706,15 +706,11 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                // get text representation of clipboard
-                var text = (e.originalEvent || e).clipboardData.getData('text');
-                ${pasteListener} && postAction({type: 'CONTENT_PASTED', data: text});
                 e.preventDefault();
-                // if (${pasteAsPlainText}) {
-                //     // cancel paste
-                //     // insert text manually
-                //   //  exec("insertText", text);
-                // }
+                // get text representation of clipboard
+                let text = (e.clipboardData || window.clipboardData).getData("text");
+                ${pasteListener} && postAction({type: 'CONTENT_PASTED', data: text});
+                
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
