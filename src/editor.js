@@ -707,7 +707,6 @@ function createHTML(options = {}) {
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
                 e.preventDefault();
-                // get text representation of clipboard
                 let text = (e.clipboardData || window.clipboardData).getData("text");
                 ${pasteListener} && postAction({type: 'CONTENT_PASTED', data: text});
                 
