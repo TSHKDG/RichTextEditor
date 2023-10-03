@@ -142,12 +142,12 @@ export default class RichTextEditor extends Component {
     }*/
 
   onMessage(event) {
-    console.log(event.nativeEvent)
+    //console.log(event.nativeEvent)
     const that = this;
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
       const message = JSON.parse(event.nativeEvent.data);
-      const data = message.data;
+      console.log(message)
       switch (message.type) {
         case messages.CONTENT_HTML_RESPONSE:
           if (that.contentResolve) {
@@ -238,7 +238,7 @@ export default class RichTextEditor extends Component {
     let jsonString
     if(type === 'html'){
       const {html, focus} = data;
-      jsonString = JSON.stringify({type, name: action, data: {html, focus}, options})
+      jsonString = JSON.stringify({type, name: focus, data: html, options})
     }else{
       jsonString = JSON.stringify({type, name: action, data, options});
     } 
