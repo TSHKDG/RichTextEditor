@@ -146,6 +146,7 @@ export default class RichTextEditor extends Component {
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
       const message = JSON.parse(event.nativeEvent.data);
+      console.log(message)
       const data = message.data;
       switch (message.type) {
         case messages.CONTENT_HTML_RESPONSE:
@@ -388,8 +389,8 @@ export default class RichTextEditor extends Component {
     this.sendAction(actions.insertText, 'result', text);
   }
 
-  insertHTML(html) {
-    this.sendAction(actions.insertHTML, 'result', html);
+  insertHTML(html, focus = false) {
+    this.sendAction(actions.insertHTML, 'result', [html, focus]);
   }
 
   insertLink(title, url) {

@@ -404,7 +404,6 @@ function createHTML(options = {}) {
             html: {
                 result: function (html){
                     if (html){
-                        console.log(html)
                         exec('insertHTML', html);
                         Actions.UPDATE_HEIGHT();
                     }
@@ -729,6 +728,7 @@ function createHTML(options = {}) {
 
             var message = function (event){
                 var msgData = JSON.parse(event.data), action = Actions[msgData.type];
+                console.log(msgData)
                 if (action ){
                     if ( action[msgData.name]){
                         var flag = msgData.name === 'result';
