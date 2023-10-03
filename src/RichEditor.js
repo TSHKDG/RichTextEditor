@@ -142,6 +142,7 @@ export default class RichTextEditor extends Component {
     }*/
 
   onMessage(event) {
+    console.log(event.nativeEvent)
     const that = this;
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
@@ -389,7 +390,7 @@ export default class RichTextEditor extends Component {
   }
 
   insertHTML(html) {
-    this.sendAction(actions.insertHTML, 'result', html);
+    this.sendAction(actions.insertHTML, 'insertion', html);
   }
 
   insertLink(title, url) {
