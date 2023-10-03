@@ -563,6 +563,7 @@ function createHTML(options = {}) {
 
             function handler() {
                 var activeTools = [];
+                console.log(actionsHandler)
                 for(var k in actionsHandler){
                     const state =  Actions[k].state() 
                     if ( state ){
