@@ -236,8 +236,7 @@ export default class RichTextEditor extends Component {
    */
   sendAction(type, action, data, options) {
     let jsonString
-    console.log(type, action, data, options)
-    if(action === 'html'){
+    if(type === 'html'){
       const {html, focus} = data;
       jsonString = JSON.stringify({type, name: action, data: html, focus, options})
     }else{
