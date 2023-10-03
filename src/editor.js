@@ -119,9 +119,11 @@ function createHTML(options = {}) {
         }
 
         function _postMessage(data){
+            console.log(data)
             exports.window.postMessage(JSON.stringify(data));
         }
         function postAction(data){
+            console.log(data)
             editor.content.contentEditable === 'true' && _postMessage(data);
         };
 
@@ -770,6 +772,7 @@ function createHTML(options = {}) {
                 event.stopPropagation();
                 var id = event.currentTarget.id;
                 if ( !id ) event.currentTarget.id = id = generateId();
+                console.log(type, data)
                 _postMessage({type, id, data});
             }
         }
