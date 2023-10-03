@@ -142,6 +142,7 @@ export default class RichTextEditor extends Component {
     }*/
 
   onMessage(event) {
+    console.log(event)
     const that = this;
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
@@ -233,9 +234,14 @@ export default class RichTextEditor extends Component {
    * @private
    */
   sendAction(type, action, data, options) {
-
-    let jsonString = JSON.stringify({type, name: action, data, options});
-    
+    let jsonString
+    if(type === 'html'){
+      const {focus, html} = data
+      jsonString = JSON.stringify({type, name: action, data: html, focus});
+    }else{
+      jsonString = JSON.stringify({type, name: action, data, options});
+    }
+      
     if (!this.unmount && this.webviewBridge) {
       this.webviewBridge.postMessage(jsonString);
     }
