@@ -563,7 +563,6 @@ function createHTML(options = {}) {
 
             function handler() {
                 var activeTools = [];
-                console.log(actionsHandler)
                 for(var k in actionsHandler){
                     const state =  Actions[k].state() 
                     if ( state ){
@@ -760,6 +759,7 @@ function createHTML(options = {}) {
                 clearTimeout(_handleCTime);
                 _handleCTime = setTimeout(function(){
                     var html = Actions.content.getHtml();
+                    console.log(html)
                     postAction({type: 'CONTENT_CHANGE', data: html});
                 }, 50);
             }
