@@ -235,8 +235,8 @@ export default class RichTextEditor extends Component {
    * @private
    */
   sendAction(type, action, data, options) {
-console.log(options)
-     let jsonString = JSON.stringify({type, name: action, data, options});
+
+    let jsonString = JSON.stringify({type, name: action, data, options});
     
     if (!this.unmount && this.webviewBridge) {
       this.webviewBridge.postMessage(jsonString);
@@ -391,12 +391,9 @@ console.log(options)
     this.sendAction(actions.insertText, 'result', text);
   }
 
-  insertHTML(html, focus = true) {
-    if(focus){
-      this.sendAction(actions.insertHTML, 'result', html, {focus:true})
-    }else{
-      this.sendAction(actions.insertHTML, 'result', html);
-    }
+  insertHTML(html, focus = false) {
+
+      this.sendAction(actions.insertHTML, 'result', [{focus}, html])
   }
 
   insertLink(title, url) {
