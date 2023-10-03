@@ -404,6 +404,7 @@ function createHTML(options = {}) {
             html: {
                 result: function (html){
                     if (html){
+                        console.log(html)
                         exec('insertHTML', html);
                         Actions.UPDATE_HEIGHT();
                     }
