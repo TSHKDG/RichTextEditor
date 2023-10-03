@@ -403,11 +403,18 @@ function createHTML(options = {}) {
             },
             html: {
                 result: function (html){
-                    console.log(html)
-                    if (html){
-                        exec('insertHTML', html);
-                        Actions.UPDATE_HEIGHT();
+                    if(typeof html !== 'string'){
+                        if (html){
+                            exec('insertHTML', html[0]);
+                            Actions.UPDATE_HEIGHT();
+                        }
+                    }else{
+                        if (html){
+                            exec('insertHTML', html);
+                            Actions.UPDATE_HEIGHT();
+                        }
                     }
+                    
                 }
             },
             text: { result: function (text){ text && exec('insertText', text); }},
