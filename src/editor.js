@@ -714,6 +714,7 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
+                console.log(e)
                 if(${pasteListener})    
                 { 
                     console.log(e)
