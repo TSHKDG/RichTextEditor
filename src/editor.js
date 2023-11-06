@@ -714,16 +714,11 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                console.log(e)
-                let text = (e.clipboardData || window.clipboardData).getData("text");
-                console.log(text)
-                console.log(e.clipboardData, window.clipboardData)
                 if(${pasteListener})    
                 { 
                     console.log(e)
                         e.preventDefault();
                         let text = (e.clipboardData || window.clipboardData).getData("text");
-                        console.log(text)
                         const selection = window.getSelection();
                         if (!selection.rangeCount) return;
                         selection.deleteFromDocument();
