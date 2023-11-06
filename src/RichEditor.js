@@ -145,7 +145,6 @@ export default class RichTextEditor extends Component {
     const that = this;
     const {onFocus, onBlur, onChange, onPaste, onKeyUp, onKeyDown, onInput, onMessage, onCursorPosition, onLink, onSelection, onTableFocus} = that.props;
     try {
-      console.log(event.nativeEvent)
       const message = JSON.parse(event.nativeEvent.data);
       const data = message.data;
       switch (message.type) {

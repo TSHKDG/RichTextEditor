@@ -480,11 +480,13 @@ function createHTML(options = {}) {
                     try {new Function("$", command)(exports.document.querySelector.bind(exports.document))} catch(e){console.log(e.message)};
                 },
                 command: function (command){
+                    console.log(command)
                     try {new Function("$", command)(exports.document)} catch(e){console.log(e.message)};
                 }
             },
 
             init: function (){
+                console.log(';;;;')
                 if (${useContainer}){
                     // setInterval(Actions.UPDATE_HEIGHT, 150);
                     Actions.UPDATE_HEIGHT();
