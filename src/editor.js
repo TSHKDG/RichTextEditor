@@ -480,13 +480,11 @@ function createHTML(options = {}) {
                     try {new Function("$", command)(exports.document.querySelector.bind(exports.document))} catch(e){console.log(e.message)};
                 },
                 command: function (command){
-                    console.log(command)
                     try {new Function("$", command)(exports.document)} catch(e){console.log(e.message)};
                 }
             },
 
             init: function (){
-                console.log(';;;;')
                 if (${useContainer}){
                     // setInterval(Actions.UPDATE_HEIGHT, 150);
                     Actions.UPDATE_HEIGHT();
@@ -718,7 +716,6 @@ function createHTML(options = {}) {
             addEventListener(content, 'paste', function (e) {
                 if(${pasteListener})    
                 { 
-                    console.log(e)
                         e.preventDefault();
                         let text = (e.clipboardData || window.clipboardData).getData("text");
                         const selection = window.getSelection();
