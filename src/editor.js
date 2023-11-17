@@ -228,7 +228,6 @@ function createHTML(options = {}) {
 
         var _keyDown = false;
         function handleChange (event){
-            console.log(event)
             var node = anchorNode;
             Actions.UPDATE_HEIGHT();
             Actions.UPDATE_OFFSET_Y();
