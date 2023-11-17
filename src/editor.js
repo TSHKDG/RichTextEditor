@@ -714,23 +714,6 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                
-                const tableElements = container.getElementsByTagName('table');
-
-                const tableIdOccurrences = {};
-
-                tableElements.forEach(table => {
-                const tableId = table.getAttribute('id');
-
-                if (tableId in tableIdOccurrences) {
-                    tableIdOccurrences[tableId]++;
-                    table.setAttribute('id', tableId+'_'+tableIdOccurrences[tableId]);
-                } else {
-                    tableIdOccurrences[tableId] = 1;
-                }
-                });
-                console.log(container.innerHTML)
-
                 if(${pasteListener})    
                 { 
                         e.preventDefault();
