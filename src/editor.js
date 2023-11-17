@@ -538,7 +538,6 @@ function createHTML(options = {}) {
             content.autocomplete = 'off';
             content.className = "pell-content";
             content.oninput = function (_ref) {
-                console.log(_ref.data)
                 // var firstChild = _ref.target.firstChild;
                 if ((anchorNode === void 0 || anchorNode === content) && queryCommandValue(formatBlock) === ''){
                     if ( !compositionStatus ){
@@ -677,16 +676,27 @@ function createHTML(options = {}) {
                     status: false,
                     data: ''
                 }
+                const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    const r = Math.random() * 16 | 0;
+                    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                  });
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
+                       
+                        ele.parentNode.parentNode.parentNode.parentNode.setAttribute('id', newUUID)
+
                         newInfo = {
                             status: true,
-                            data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
+                            data: newUUID
                         }
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
+
+                        ele.parentNode?.parentNode?.parentNode?.setAttribute('id', newUUID)
+
                         newInfo = {
                             status: true,
-                            data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
+                            data: newUUID
                         }  
                     }
                 }
