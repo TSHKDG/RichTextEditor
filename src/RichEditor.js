@@ -21,6 +21,7 @@ export default class RichTextEditor extends Component {
     defaultParagraphSeparator: 'div',
     editorInitializedCallback: () => {},
     initialHeight: 0,
+    randomValue:''
   };
 
   constructor(props) {
@@ -86,6 +87,7 @@ export default class RichTextEditor extends Component {
             firstFocusEnd,
             useContainer,
             styleWithCSS,
+            randomValue,
           }),
       },
       keyboardHeight: 0,

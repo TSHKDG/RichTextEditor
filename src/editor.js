@@ -42,6 +42,7 @@ function createHTML(options = {}) {
     firstFocusEnd = true,
     useContainer = true,
     styleWithCSS = false,
+    randomValue = '',
   } = options;
   //ERROR: HTML height not 100%;
   return `
@@ -715,12 +716,21 @@ function createHTML(options = {}) {
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
                 
-                var html = Actions.content.getHtml().getData("text")
-                console.log(html)
+                const tableElements = container.getElementsByTagName('table');
 
-                const pastedInfo = (e.clipboardData || window.clipboardData).getData("text")
-                const allTables = /<table\s+([^>]*\s+)?id="([^"]*)"[^>]*>/g
-                console.log(pastedInfo.match(allTables))
+                const tableIdOccurrences = {};
+
+                tableElements.forEach(table => {
+                const tableId = table.getAttribute('id');
+
+                if (tableId in tableIdOccurrences) {
+                    tableIdOccurrences[tableId]++;
+                    table.setAttribute('id', ${randomValue});
+                } else {
+                    tableIdOccurrences[tableId] = 1;
+                }
+                });
+                console.log(container.innerHTML)
 
                 if(${pasteListener})    
                 { 
