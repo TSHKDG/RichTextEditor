@@ -228,6 +228,7 @@ function createHTML(options = {}) {
 
         var _keyDown = false;
         function handleChange (event){
+            console.log(event)
             var node = anchorNode;
             Actions.UPDATE_HEIGHT();
             Actions.UPDATE_OFFSET_Y();
@@ -538,6 +539,7 @@ function createHTML(options = {}) {
             content.autocomplete = 'off';
             content.className = "pell-content";
             content.oninput = function (_ref) {
+                console.log(_ref.data)
                 // var firstChild = _ref.target.firstChild;
                 if ((anchorNode === void 0 || anchorNode === content) && queryCommandValue(formatBlock) === ''){
                     if ( !compositionStatus ){
