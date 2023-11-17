@@ -714,8 +714,14 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                console.log(e)
-                console.log((e.clipboardData || window.clipboardData).getData("text"))
+                
+                var html = Actions.content.getHtml().getData("text")
+                console.log(html)
+
+                const pastedInfo = (e.clipboardData || window.clipboardData).getData("text")
+                const allTables = /<table\s+([^>]*\s+)?id="([^"]*)"[^>]*>/g
+                console.log(pastedInfo.match(allTables))
+
                 if(${pasteListener})    
                 { 
                         e.preventDefault();
