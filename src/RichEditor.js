@@ -60,6 +60,7 @@ export default class RichTextEditor extends Component {
       initialFocus,
       disabled,
       styleWithCSS,
+      randomValue,
     } = props;
     that.state = {
       html: {
