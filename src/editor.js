@@ -42,7 +42,6 @@ function createHTML(options = {}) {
     firstFocusEnd = true,
     useContainer = true,
     styleWithCSS = false,
-    randomValue = '',
   } = options;
   //ERROR: HTML height not 100%;
   return `
@@ -725,7 +724,7 @@ function createHTML(options = {}) {
 
                 if (tableId in tableIdOccurrences) {
                     tableIdOccurrences[tableId]++;
-                    table.setAttribute('id', ${randomValue});
+                    table.setAttribute('id', tableId+'_'+tableIdOccurrences[tableId]);
                 } else {
                     tableIdOccurrences[tableId] = 1;
                 }
