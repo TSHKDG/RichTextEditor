@@ -722,13 +722,10 @@ function createHTML(options = {}) {
                    else if(ele.parentNode?.nodeName === 'A'){
                         ele.parentNode.id = newUUID
                     }
-
-                    var html = Actions.content.getHtml()
-
                     const aData = {
                         id: newUUID,
                         href: ele.getAttribute('href') || ele.parentNode?.getAttribute('href')
-                        html: html
+                        html: editor.content.innerHTML
                     }
                     postAction({type: 'LINK_TOUCHED', data: aData});
                 }
