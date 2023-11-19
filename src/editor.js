@@ -670,6 +670,7 @@ function createHTML(options = {}) {
             }
 
             function handleClick(event){
+                console.log(event)
                 var ele = event.target;
 
                 let newInfo = { 
@@ -725,7 +726,7 @@ function createHTML(options = {}) {
                     const aData = {
                         id: newUUID,
                         href: ele.getAttribute('href') || ele.parentNode?.getAttribute('href')
-                        html: editor.content.innerHTML
+                        html: document.getElementById('content').innerHTML
                     }
                     postAction({type: 'LINK_TOUCHED', data: aData});
                 }
