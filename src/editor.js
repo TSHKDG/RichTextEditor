@@ -718,14 +718,17 @@ function createHTML(options = {}) {
                 if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A') && (ele.getAttribute('href')|| ele.parentNode?.getAttribute('href'))) {
                     if(ele.nodeName === 'A'){
                         ele.id = newUUID
-                        console.log(ele.getAttribute('id'))
                     }
                    else if(ele.parentNode?.nodeName === 'A'){
                         ele.parentNode.id = newUUID
                     }
+
+                    var html = Actions.content.getHtml()
+
                     const aData = {
                         id: newUUID,
                         href: ele.getAttribute('href') || ele.parentNode?.getAttribute('href')
+                        html: html
                     }
                     postAction({type: 'LINK_TOUCHED', data: aData});
                 }
