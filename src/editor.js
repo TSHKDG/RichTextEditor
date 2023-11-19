@@ -681,6 +681,8 @@ function createHTML(options = {}) {
                     const v = c === 'x' ? r : (r & 0x3 | 0x8);
                     return v.toString(16);
                   });
+
+//table
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                        
@@ -699,10 +701,10 @@ function createHTML(options = {}) {
                             data: newUUID
                         }  
                     }
+                    postAction({type: 'FIND_TABLE', data: newInfo});
                 }
 
-                postAction({type: 'FIND_TABLE', data: newInfo});
-
+//input 
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
                     // Set whether the checkbox is selected by default
                     if (ele.checked) ele.setAttribute('checked', '');
@@ -712,12 +714,14 @@ function createHTML(options = {}) {
                     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
                 }
 
+//link
                 if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A') && (ele.getAttribute('href')|| ele.parentNode?.getAttribute('href'))) {
                     if(ele.nodeName === 'A'){
                         ele.id = newUUID
+                        console.log(ele.getAttribute('id'))
                     }
                    else if(ele.parentNode?.nodeName === 'A'){
-                        ele.parentNode.id =  newUUID
+                        ele.parentNode.id = newUUID
                     }
                     const aData = {
                         id: newUUID,
@@ -725,6 +729,7 @@ function createHTML(options = {}) {
                     }
                     postAction({type: 'LINK_TOUCHED', data: aData});
                 }
+//
             }
             addEventListener(content, 'touchcancel', handleSelecting);
             addEventListener(content, 'mouseup', handleSelecting);
