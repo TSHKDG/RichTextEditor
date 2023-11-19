@@ -670,8 +670,8 @@ function createHTML(options = {}) {
             }
 
             function handleClick(event){
-            //    const aa = document.getElementById('content').innerHTML
-                console.log(event)
+                const aa = document.getElementById('content').innerHTML
+                console.log(aa)
                 var ele = event.target;
 
                 let newInfo = { 
