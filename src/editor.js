@@ -713,12 +713,11 @@ function createHTML(options = {}) {
                 }
 
                 if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A') && (ele.getAttribute('href')|| ele.parentNode?.getAttribute('href'))) {
-                  console.log(ele.nodeName, ele.parentNode?.nodeName)
                     if(ele.nodeName === 'A'){
-                        ele.setAttribute("id", newUUID)
+                        ele.id = newUUID
                     }
                    else if(ele.parentNode?.nodeName === 'A'){
-                        ele.parentNode.setAttribute("id", newUUID)
+                        ele.parentNode.id =  newUUID
                     }
                     const aData = {
                         id: newUUID,
