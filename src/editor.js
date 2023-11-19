@@ -714,10 +714,10 @@ function createHTML(options = {}) {
 
                 if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A') && (ele.getAttribute('href')|| ele.parentNode?.getAttribute('href'))) {
                     if(ele.nodeName === 'A'){
-                        ele.setAttribute('id', newUUID)
+                        ele.setAttribute("id", newUUID)
                     }
                    else if(ele.parentNode?.nodeName === 'A'){
-                        ele.parentNode.setAttribute('id', newUUID)
+                        ele.parentNode.setAttribute("id", newUUID)
                     }
                     const aData = {
                         id: newUUID,
