@@ -725,9 +725,8 @@ function createHTML(options = {}) {
                     }
                     const contentHtml = document.getElementById('content').innerHTML
                     const aData = {
-                        id: newUUID,
                         href: ele.getAttribute('href') || ele.parentNode?.getAttribute('href')
-                       content: contentHtml
+                       str: {contentHtml,id: newUUID,}
                     }
                     postAction({type: 'LINK_TOUCHED', data: aData});
                 }
