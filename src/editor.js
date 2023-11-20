@@ -702,8 +702,8 @@ function createHTML(options = {}) {
                             data: newUUID
                         }  
                     }
-                    postAction({type: 'FIND_TABLE', data: newInfo});
                 }
+                postAction({type: 'FIND_TABLE', data: newInfo});
 
 //input 
                 if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
