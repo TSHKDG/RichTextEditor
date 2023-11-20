@@ -723,7 +723,7 @@ function createHTML(options = {}) {
                    else if(ele.parentNode?.nodeName === 'A'){
                         ele.parentNode.id = newUUID
                     }
-                    const contentHtml = document.getElementById('content').innerHTML
+                    const contentHtml = document?.getElementById('content')?.innerHTML || ''
                     const aData = {
                         href: ele.getAttribute('href') || ele.parentNode?.getAttribute('href')
                        str: {contentHtml,id: newUUID,}
