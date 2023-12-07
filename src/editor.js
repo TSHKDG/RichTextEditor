@@ -741,18 +741,21 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                console.log((e.clipboardData || window.clipboardData).getData('text/html'))
-                if(${pasteListener})    
-                { 
+              
                         e.preventDefault();
-                        let text = (e.clipboardData || window.clipboardData).getData("text");
+                        let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html");
                         const selection = window.getSelection();
                         if (!selection.rangeCount) return;
                         selection.deleteFromDocument();
-                        selection.getRangeAt(0).insertNode(document.createTextNode(text));
-                        selection.collapseToEnd()
-                        exec('insertHTML', '')
-                }
+
+                        var range = document.createRange();
+                        var fragment = range.createContextualFragment(pastedHTML);
+
+                        range.selectNodeContents(contentDiv);
+                        range.collapse(false);
+                        range.insertNode(fragment);
+                        selection.removeAllRanges();
+                
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
