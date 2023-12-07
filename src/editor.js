@@ -755,6 +755,7 @@ function createHTML(options = {}) {
                         range.collapse(false);
                         range.insertNode(fragment);
                         selection.removeAllRanges();
+                        selection.addRange(range);
                 
             });
             addEventListener(content, 'compositionstart', function(event){
