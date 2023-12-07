@@ -747,7 +747,7 @@ function createHTML(options = {}) {
                         console.log(pastedHTML)
 
                         const selection = window.getSelection();
-                        if (!selection.rangeCount) return;
+                        // if (!selection.rangeCount) return;
                         selection.deleteFromDocument();
 
                         var range = document.createRange();
