@@ -687,7 +687,7 @@ function createHTML(options = {}) {
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                        
-                        ele.parentNode.parentNode.parentNode.parentNode.setAttribute('id', newUUID)
+                       // ele.parentNode.parentNode.parentNode.parentNode.setAttribute('id', newUUID)
 
                         newInfo = {
                             status: true,
@@ -695,7 +695,7 @@ function createHTML(options = {}) {
                         }
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
 
-                        ele.parentNode?.parentNode?.parentNode?.setAttribute('id', newUUID)
+                      //  ele.parentNode?.parentNode?.parentNode?.setAttribute('id', newUUID)
 
                         newInfo = {
                             status: true,
@@ -717,16 +717,17 @@ function createHTML(options = {}) {
 
 //link
                 if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A') && (ele.getAttribute('href')|| ele.parentNode?.getAttribute('href'))) {
+                    let elemenetID;
                     if(ele.nodeName === 'A'){
-                        ele.id = newUUID
+                        elemenetID =  ele.getAttribute('id')
                     }
                    else if(ele.parentNode?.nodeName === 'A'){
-                        ele.parentNode.id = newUUID
+                        elemenetID =  ele.parentNode.getAttribute('id')
                     }
                     const contentHtml = document?.getElementById('content')?.innerHTML || ''
                     const aData = {
                         href: ele.getAttribute('href') || ele.parentNode?.getAttribute('href'),
-                       str: {contentHtml,id: newUUID}
+                       str: {contentHtml,id: elemenetID}
                     }
                     postAction({type: 'LINK_TOUCHED', data: aData});
                 }
@@ -746,9 +747,9 @@ function createHTML(options = {}) {
                     let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '');
                     const newElement = document.createElement('div');
                     newElement.innerHTML = pastedHTML
-                    console.log(pastedHTML)
 
                     const anchorTags = newElement.querySelectorAll('a');
+                    const tableTags = newElement.querySelectorAll('table')
                     
                     anchorTags.forEach((aTag) => {
                         
@@ -757,12 +758,22 @@ function createHTML(options = {}) {
                             const v = c === 'x' ? r : (r & 0x3 | 0x8);
                             return v.toString(16);
                           });
-                        console.log(newUUID)
                         aTag.setAttribute("front_id", newUUID);
+                        aTag.setAttribute("id", newUUID);
+
+                    });
+
+                    tableTags.forEach((tableTag) => {
+                        
+                        const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                            const r = Math.random() * 16 | 0;
+                            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                            return v.toString(16);
+                          });
+                        tableTag.setAttribute("id", newUUID);
 
                     });
                     
-                    console.log(newElement)
                     
                     const selection = window.getSelection();
                     if (!selection.rangeCount) return;
@@ -771,7 +782,7 @@ function createHTML(options = {}) {
                     selection.getRangeAt(0).insertNode(newElement);
                     selection.collapseToEnd()
                     exec('insertHTML', '')
-                    
+
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
