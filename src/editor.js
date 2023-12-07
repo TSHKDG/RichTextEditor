@@ -753,10 +753,10 @@ function createHTML(options = {}) {
                         selection.deleteFromDocument();
 
                         var range = document.createRange();
-    
+    console.log(range.toString())
                         range.insertNode(newElement);
                         // selection.removeAllRanges();
-                        // selection.addRange(range);
+                        selection.addRange(range);
                 
             });
             addEventListener(content, 'compositionstart', function(event){
