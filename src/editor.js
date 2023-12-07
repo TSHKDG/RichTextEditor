@@ -750,6 +750,16 @@ function createHTML(options = {}) {
                     newElement.innerHTML = pastedHTML
                     console.log(pastedHTML)
 
+                    const anchorTags = newElement.querySelectorAll('a');
+                    anchorTags.forEach((aTag) => {
+                        const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                            const r = Math.random() * 16 | 0;
+                            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                            return v.toString(16);
+                          });
+                        aTag.setAttribute('front_id', newUUID);
+                    });
+
                     const selection = window.getSelection();
                     if (!selection.rangeCount) return;
                     selection.deleteFromDocument();
@@ -757,22 +767,6 @@ function createHTML(options = {}) {
                     selection.getRangeAt(0).insertNode(newElement);
                     selection.collapseToEnd()
                     exec('insertHTML', '')
-
-                    // var range = document.createRange();
-
-                    // range.insertNode(newElement);
-                    // // selection.removeAllRanges();
-                    // selection.addRange(range);
-
-                        
-                    // e.preventDefault();
-                    //     let text = (e.clipboardData || window.clipboardData).getData("text");
-                    //     const selection = window.getSelection();
-                    //     if (!selection.rangeCount) return;
-                    //     selection.deleteFromDocument();
-                    //     selection.getRangeAt(0).insertNode(document.createTextNode(text));
-                    //     selection.collapseToEnd()
-                    //     exec('insertHTML', '')
                 }
             });
             addEventListener(content, 'compositionstart', function(event){
