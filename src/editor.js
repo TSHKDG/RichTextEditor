@@ -755,8 +755,8 @@ function createHTML(options = {}) {
                         var range = document.createRange();
     
                         range.insertNode(newElement);
-                        selection.removeAllRanges();
-                        selection.addRange(range);
+                        // selection.removeAllRanges();
+                        // selection.addRange(range);
                 
             });
             addEventListener(content, 'compositionstart', function(event){
