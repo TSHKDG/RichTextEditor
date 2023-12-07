@@ -687,19 +687,16 @@ function createHTML(options = {}) {
                 if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
                     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
                        
-                       // ele.parentNode.parentNode.parentNode.parentNode.setAttribute('id', newUUID)
-
                         newInfo = {
                             status: true,
-                            data: newUUID
+                            data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
                         }
                     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
 
-                      //  ele.parentNode?.parentNode?.parentNode?.setAttribute('id', newUUID)
 
                         newInfo = {
                             status: true,
-                            data: newUUID
+                            data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
                         }  
                     }
                 }
