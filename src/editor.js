@@ -741,9 +741,7 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                console.log(${pasteListener})
-                if(${pasteListener})    
-                { 
+              
                     e.preventDefault();
                     let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '');
                     const newElement = document.createElement('div');
@@ -751,15 +749,21 @@ function createHTML(options = {}) {
                     console.log(pastedHTML)
 
                     const anchorTags = newElement.querySelectorAll('a');
+                    
                     anchorTags.forEach((aTag) => {
+                        
                         const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                             const r = Math.random() * 16 | 0;
                             const v = c === 'x' ? r : (r & 0x3 | 0x8);
                             return v.toString(16);
                           });
-                        aTag.setAttribute('front_id', newUUID);
-                    });
+                        console.log(newUUID)
+                        aTag.setAttribute("front_id", newUUID);
 
+                    });
+                    
+                    console.log(newElement)
+                    
                     const selection = window.getSelection();
                     if (!selection.rangeCount) return;
                     selection.deleteFromDocument();
@@ -767,7 +771,7 @@ function createHTML(options = {}) {
                     selection.getRangeAt(0).insertNode(newElement);
                     selection.collapseToEnd()
                     exec('insertHTML', '')
-                }
+                    
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
