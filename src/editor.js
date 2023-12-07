@@ -741,23 +741,39 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-              
-                        e.preventDefault();
-                        let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '');
-                        const newElement = document.createElement('div');
-                        newElement.innerHTML = pastedHTML
-                        console.log(pastedHTML)
+                console.log(${pasteListener})
+                if(${pasteListener})    
+                { 
+                    e.preventDefault();
+                    let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '');
+                    const newElement = document.createElement('div');
+                    newElement.innerHTML = pastedHTML
+                    console.log(pastedHTML)
 
-                        const selection = window.getSelection();
-                        if (!selection.rangeCount) return;
-                        selection.deleteFromDocument();
+                    const selection = window.getSelection();
+                    if (!selection.rangeCount) return;
+                    selection.deleteFromDocument();
 
-                        var range = document.createRange();
-    console.log(range.toString())
-                        range.insertNode(newElement);
-                        // selection.removeAllRanges();
-                        selection.addRange(range);
-                
+                    selection.getRangeAt(0).insertNode(newElement);
+                    selection.collapseToEnd()
+                    exec('insertHTML', '')
+
+                    // var range = document.createRange();
+
+                    // range.insertNode(newElement);
+                    // // selection.removeAllRanges();
+                    // selection.addRange(range);
+
+                        
+                    // e.preventDefault();
+                    //     let text = (e.clipboardData || window.clipboardData).getData("text");
+                    //     const selection = window.getSelection();
+                    //     if (!selection.rangeCount) return;
+                    //     selection.deleteFromDocument();
+                    //     selection.getRangeAt(0).insertNode(document.createTextNode(text));
+                    //     selection.collapseToEnd()
+                    //     exec('insertHTML', '')
+                }
             });
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
