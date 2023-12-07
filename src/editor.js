@@ -743,19 +743,18 @@ function createHTML(options = {}) {
             addEventListener(content, 'paste', function (e) {
               
                         e.preventDefault();
-                        let pastedHTML = '<div>' + (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '')+'</div>';
+                        let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '');
+                        const newElement = document.createElement('div');
+                        newElement.innerHTML = pastedHTML
                         console.log(pastedHTML)
 
                         const selection = window.getSelection();
-                        // if (!selection.rangeCount) return;
+                        if (!selection.rangeCount) return;
                         selection.deleteFromDocument();
 
                         var range = document.createRange();
-                        var fragment = range.createContextualFragment(pastedHTML);
-
-                        range.selectNodeContents(contentDiv);
-                        range.collapse(false);
-                        range.insertNode(fragment);
+    
+                        range.insertNode(newElement);
                         selection.removeAllRanges();
                         selection.addRange(range);
                 
