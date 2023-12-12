@@ -740,26 +740,37 @@ function createHTML(options = {}) {
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
               
+
                     e.preventDefault();
+
+                    //getting copied data, and using getData for getting html like string from clipboard
+                    console.log((e.clipboardData || window.clipboardData).getData("text"))
+                    console.log((e.clipboardData || window.clipboardData).getData("text/html"))
                     let pastedHTML = (e.clipboardData || window.clipboardData).getData("text/html").replace(/<!DOCTYPE[^>]*>/, '');
+                    console.log(pastedHTML)
+
+                    //creating node element - div, and setting for its our copied data as a chiled
                     const newElement = document.createElement('div');
                     newElement.innerHTML = pastedHTML
 
+                    //finding all <a> & <table> tags for manipulation
                     const anchorTags = newElement.querySelectorAll('a');
                     const tableTags = newElement.querySelectorAll('table')
                     
                     anchorTags.forEach((aTag) => {
-                        
+                        //uuid creator, because we can not import libraries here, for that we created some features by hand
                         const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                             const r = Math.random() * 16 | 0;
                             const v = c === 'x' ? r : (r & 0x3 | 0x8);
                             return v.toString(16);
                           });
+                        //chnaging "front_id" and "id" attributes
                         aTag.setAttribute("front_id", newUUID);
                         aTag.setAttribute("id", newUUID);
 
                     });
 
+                    //the same manipulation for tables, here we have only "id"
                     tableTags.forEach((tableTag) => {
                         
                         const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -771,13 +782,18 @@ function createHTML(options = {}) {
 
                     });
                     
-                    
+                    //using selection delete all selected node and elements
                     const selection = window.getSelection();
                     if (!selection.rangeCount) return;
                     selection.deleteFromDocument();
 
+                    //insert copied node and elements
                     selection.getRangeAt(0).insertNode(newElement);
+
+                    //clear selection
                     selection.collapseToEnd()
+
+                    //inserting empty text, because we want to catch this action, it has not message poster 
                     exec('insertHTML', '')
 
             });
