@@ -744,14 +744,12 @@ function createHTML(options = {}) {
                     e.preventDefault();
 
                     //getting copied data, and using getData for getting html like string from clipboard
-                    console.log((e.clipboardData || window.clipboardData).getData("text"))
-                    console.log((e.clipboardData || window.clipboardData).getData("text/html"))
+                    console.log(copiedData?.startsWith('<!DOCTYPE))
                     let copiedData = (e.clipboardData || window.clipboardData).getData("text/html")
-                    if(copiedData === ' '){
+                    if(!copiedData?.startsWith('<!DOCTYPE)){
                         copiedData = (e.clipboardData || window.clipboardData).getData("text")
                     }
                     let pastedHTML = copiedData.replace(/<!DOCTYPE[^>]*>/, '');
-                    console.log(pastedHTML)
 
                     //creating node element - div, and setting for its our copied data as a chiled
                     const newElement = document.createElement('div');
