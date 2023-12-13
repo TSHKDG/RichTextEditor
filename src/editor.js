@@ -598,7 +598,7 @@ function createHTML(options = {}) {
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i];
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
-                        selection.addRange(removeRange(link));
+                        selection.removeRange(createRange(link));
                     }
                 }
 
