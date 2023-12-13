@@ -598,7 +598,7 @@ function createHTML(options = {}) {
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i];
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
-                        selection.removeRange(createRange(link));
+                        selection.addRange(createRange(link));
                     }
                 }
 
@@ -608,9 +608,9 @@ function createHTML(options = {}) {
 
             function createRange(element) {
                 const range = document.createRange();
-                range.deleteContents(element);
+                range.selectNode(element);
                 return range;
-            }
+              }
 
             function postKeyAction(event, type){
                 postAction({type: type, data: {keyCode: event.keyCode, key: event.key}});
