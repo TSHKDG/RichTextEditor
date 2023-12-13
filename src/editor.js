@@ -595,10 +595,26 @@ function createHTML(options = {}) {
                 const container = document.getElementById('content');
                 const links = container.getElementsByTagName('a');
 
+console.log(event)
+                links.forEach(function (link) {
+                  link.addEventListener('selectstart', function (e) {
+                    // Prevent text selection on link
+                    e.preventDefault();
+                  });
+          
+                  link.addEventListener('mousedown', function (e) {
+                    // Prevent dragging of the link
+                    e.preventDefault();
+                  });
+                });
+
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i];
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
-                        selection.addRange(createRange(link));
+                       // selection.addRange(createRange(link));
+                       link.addEventListener('selectstart', function (e) {
+                        e.preventDefault();
+                      });
                     }
                 }
 
@@ -744,8 +760,6 @@ function createHTML(options = {}) {
                     e.preventDefault();
 
                     let copiedData = (e.clipboardData || window.clipboardData).getData("text");
-
-console.log((e.clipboardData || window.clipboardData).types.includes("text/html"))
 
                     if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
                         copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
