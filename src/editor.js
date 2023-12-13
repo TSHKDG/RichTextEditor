@@ -608,9 +608,9 @@ function createHTML(options = {}) {
 
             function createRange(element) {
                 const range = document.createRange();
-                range.selectNode(element);
+                range.deleteContents(element);
                 return range;
-              }
+            }
 
             function postKeyAction(event, type){
                 postAction({type: type, data: {keyCode: event.keyCode, key: event.key}});
