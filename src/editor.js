@@ -740,12 +740,12 @@ function createHTML(options = {}) {
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
                     e.preventDefault();
-                    let data = (e.clipboardData || window.clipboardData)
+                    let clipboard_Data = e.clipboardData || window.clipboardData
                     //getting copied data, and using getData for getting html like string from clipboard
                    
-                    if(data.getData('Text'))
+                    if(clipboard_Data.getData('Text')){
                         copiedData = data.getData("text")
-                    }else if(data.getData('text/html')){
+                    }else if(clipboard_Data.getData('text/html')){
                         let copiedData = data.getData("text/html").replace(/<!DOCTYPE[^>]*>/, '')
                     }
                    
