@@ -744,9 +744,9 @@ function createHTML(options = {}) {
                     e.preventDefault();
 
                     //getting copied data, and using getData for getting html like string from clipboard
-                    let copiedData = (e.clipboardData || window.clipboardData).getData("text/html")
+                    let copiedData = (e.clipboardData || window.clipboardData).getData("text/html").replace('<!DOCTYPE html>', '')
                     const startsWithTag = /^<\w+/.test(copiedData)
-                    console.log(startsWithTag,copiedData)
+                    console.log(startsWithTag, copiedData)
                     if(!startsWithTag){
                         copiedData = (e.clipboardData || window.clipboardData).getData("text")
                     }
