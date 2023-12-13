@@ -598,7 +598,7 @@ function createHTML(options = {}) {
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i];
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
-                        selection.removeRange(createRange(link));
+                        selection.addRange(createRange(link));
                     }
                 }
 
@@ -743,6 +743,8 @@ function createHTML(options = {}) {
                     let clipboard_Data = e.clipboardData || window.clipboardData
                     //getting copied data, and using getData for getting html like string from clipboard
                    
+                    console.log(clipboard_Data.getData('Text'), clipboard_Data.getData('text/html'))
+
                     if(clipboard_Data.getData('Text')){
                         copiedData = data.getData("text")
                     }else if(clipboard_Data.getData('text/html')){
