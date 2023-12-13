@@ -739,21 +739,21 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-                    e.preventDefault();
-                    let clipboard_Data = e.clipboardData || window.clipboardData
-                    //getting copied data, and using getData for getting html like string from clipboard
-                   
-                    console.log(clipboard_Data.getData('Text'), clipboard_Data.getData('text/html'))
+              
 
-                    if(clipboard_Data.getData('Text')){
-                        copiedData = data.getData("text")
-                    }else if(clipboard_Data.getData('text/html')){
-                        let copiedData = data.getData("text/html").replace(/<!DOCTYPE[^>]*>/, '')
+                    e.preventDefault();
+
+                    //getting copied data, and using getData for getting html like string from clipboard
+                    let copiedData = (e.clipboardData || window.clipboardData).getData("text/html")
+                    const startsWithTag = /^<\w+/.test(copiedData)
+                    if(!startsWithTag){
+                        copiedData = (e.clipboardData || window.clipboardData).getData("text")
                     }
-                   
+                    let pastedHTML = copiedData.replace(/<!DOCTYPE[^>]*>/, '');
+
                     //creating node element - div, and setting for its our copied data as a chiled
                     const newElement = document.createElement('div');
-                    newElement.innerHTML = copiedData
+                    newElement.innerHTML = pastedHTML
 
                     //finding all <a> & <table> tags for manipulation
                     const anchorTags = newElement.querySelectorAll('a');
