@@ -746,14 +746,14 @@ function createHTML(options = {}) {
                     //getting copied data, and using getData for getting html like string from clipboard
                     let copiedData = (e.clipboardData || window.clipboardData).getData("text/html")
                     const startsWithTag = /^<\w+/.test(copiedData)
+                    console.log(startsWithTag,copiedData)
                     if(!startsWithTag){
                         copiedData = (e.clipboardData || window.clipboardData).getData("text")
                     }
-                    let pastedHTML = copiedData.replace(/<!DOCTYPE[^>]*>/, '');
 
                     //creating node element - div, and setting for its our copied data as a chiled
                     const newElement = document.createElement('div');
-                    newElement.innerHTML = pastedHTML
+                    newElement.innerHTML = copiedData
 
                     //finding all <a> & <table> tags for manipulation
                     const anchorTags = newElement.querySelectorAll('a');
