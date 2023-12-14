@@ -760,14 +760,15 @@ function createHTML(options = {}) {
                     
                     anchorTags.forEach((aTag) => {
                         //uuid creator, because we can not import libraries here, for that we created some features by hand
-                        const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                            const r = Math.random() * 16 | 0;
-                            const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                            return v.toString(16);
-                          });
+                        // const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                        //     const r = Math.random() * 16 | 0;
+                        //     const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                        //     return v.toString(16);
+                        //   });
                         //chnaging "front_id" and "id" attributes
-                        aTag.setAttribute("front_id", newUUID);
-                        aTag.setAttribute("id", newUUID);
+                        // aTag.setAttribute("front_id", newUUID);
+                        // aTag.setAttribute("id", newUUID);
+                        aTag.parentNode.removeChild(aTag);
 
                     });
 
