@@ -739,7 +739,6 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-              
 
                     e.preventDefault();
 
@@ -759,17 +758,14 @@ function createHTML(options = {}) {
                     const tableTags = newElement.querySelectorAll('table')
                     
                     anchorTags.forEach((aTag) => {
-                        //uuid creator, because we can not import libraries here, for that we created some features by hand
-                        // const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                        //     const r = Math.random() * 16 | 0;
-                        //     const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                        //     return v.toString(16);
-                        //   });
-                        //chnaging "front_id" and "id" attributes
-                        // aTag.setAttribute("front_id", newUUID);
-                        // aTag.setAttribute("id", newUUID);
-                        aTag.parentNode.removeChild(aTag);
-
+                        uuid creator, because we can not import libraries here, for that we created some features by hand
+                        const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                            const r = Math.random() * 16 | 0;
+                            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                            return v.toString(16);
+                          });
+                        // chnaging "id" attribute
+                        aTag.setAttribute("id", newUUID);
                     });
 
                     //the same manipulation for tables, here we have only "id"
@@ -797,6 +793,8 @@ function createHTML(options = {}) {
 
                     //inserting empty text, because we want to catch this action, it has not message poster 
                     exec('insertHTML', '')
+
+                    postAction({type: 'CONTENT_PASTED', data: newElement.innerHTML})
 
             });
             addEventListener(content, 'compositionstart', function(event){
