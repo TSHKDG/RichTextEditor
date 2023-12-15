@@ -769,9 +769,14 @@ function createHTML(options = {}) {
                             return v.toString(16);
                           });
                         //chnaging "front_id" and "id" attributes
-                        // aTag.setAttribute("front_id", newUUID);
                         aTag.setAttribute("id", newUUID);
-
+                        let currentFrontID =  aTag.getAttribute("front_id");
+                        for (let i = 0; i < links.length; i++) {
+                            let frontID =  links[i].getAttribute('front_id')
+                            if(currentFrontID === frontID){
+                                aTag.setAttribute("front_id", newUUID);
+                            }
+                        }
                        // aTag.parentNode.removeChild(aTag);
 
                     });
