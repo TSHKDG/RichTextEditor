@@ -757,6 +757,9 @@ function createHTML(options = {}) {
                     //finding all <a> & <table> tags for manipulation
                     const anchorTags = newElement.querySelectorAll('a');
                     const tableTags = newElement.querySelectorAll('table')
+
+                    const container = document.getElementById('content');
+                    const links = container.getElementsByTagName('a');
                     
                     anchorTags.forEach((aTag) => {
                         //uuid creator, because we can not import libraries here, for that we created some features by hand
@@ -768,6 +771,7 @@ function createHTML(options = {}) {
                         //chnaging "front_id" and "id" attributes
                         // aTag.setAttribute("front_id", newUUID);
                         aTag.setAttribute("id", newUUID);
+
                        // aTag.parentNode.removeChild(aTag);
 
                     });
