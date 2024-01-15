@@ -597,6 +597,8 @@ function createHTML(options = {}) {
 
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i];
+                    console.log(selection.containsNode(link, true) && link.getAttribute('id'))
+                    console.log(link.getAttribute('id'))
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
                         selection.addRange(createRange(link));
                     }
