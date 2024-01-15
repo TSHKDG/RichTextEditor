@@ -600,9 +600,9 @@ function createHTML(options = {}) {
 
                     console.log('selection contain - ', selection.containsNode(link, true))
                     console.log('id - ', link.getAttribute('id'))
-                    console.log(selection.containsNode(link, true), link.getAttribute('id'))
+                    console.log(selection.containsNode(link, true) && !!link.getAttribute('id'))
 
-                    if (selection.containsNode(link, true) && link.getAttribute('id')) {
+                    if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
                         selection.addRange(createRange(link));
                     }
                 }
