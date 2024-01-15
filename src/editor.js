@@ -597,6 +597,11 @@ function createHTML(options = {}) {
 
                 for (let i = 0; i < links.length; i++) {
                     let link = links[i];
+                    
+                    const range = selection.getRangeAt(0);
+                    console.log(range.commonAncestorContainer.contains(link))
+
+                    conole.log(link)
                     console.log(selection.containsNode(link, true) && link.getAttribute('id'))
                     console.log(link.getAttribute('id'))
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
