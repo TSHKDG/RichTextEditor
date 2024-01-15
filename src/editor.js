@@ -589,7 +589,7 @@ function createHTML(options = {}) {
                 }, 50);
             }
 
-
+//selecting
             function handleSelecting(event){
                 const selection = window.getSelection();
                 const container = document.getElementById('content');
