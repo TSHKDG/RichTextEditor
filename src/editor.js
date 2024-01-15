@@ -599,11 +599,10 @@ function createHTML(options = {}) {
                     let link = links[i];
                     
                     const range = selection.getRangeAt(0);
-                    console.log(range.commonAncestorContainer.contains(link))
+                    console.log('range - ', range.commonAncestorContainer.contains(link))
 
-                    conole.log(link)
-                    console.log(selection.containsNode(link, true) && link.getAttribute('id'))
-                    console.log(link.getAttribute('id'))
+                    console.log('selection contain - ', selection.containsNode(link, true))
+                    console.log('id - ', link.getAttribute('id'))
                     if (selection.containsNode(link, true) && link.getAttribute('id')) {
                         selection.addRange(createRange(link));
                     }
