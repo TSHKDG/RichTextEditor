@@ -594,8 +594,8 @@ function createHTML(options = {}) {
 
                 const selection = window.getSelection();
 
-                if (selection.rangeCount > 0) {
-                    var range = selection.getRangeAt(0); 
+                if (selection?.rangeCount > 0) {
+                    var range = selection?.getRangeAt(0); 
                     var container = document.createElement('div');
                     container.appendChild(range.cloneContents());
                     var selectedHtml = container.innerHTML;
