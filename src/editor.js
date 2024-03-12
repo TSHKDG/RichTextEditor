@@ -591,7 +591,19 @@ function createHTML(options = {}) {
 
 //selecting
             function handleSelecting(event){
+
                 const selection = window.getSelection();
+
+                if (selection.rangeCount > 0) {
+                    var range = selection.getRangeAt(0); 
+                    var container = document.createElement('div');
+                    container.appendChild(range.cloneContents());
+                    var selectedHtml = container.innerHTML;
+                    console.log(selectedHtml);
+                }
+
+                
+
                 const container = document.getElementById('content');
                 const links = container.getElementsByTagName('a');
 
@@ -739,12 +751,7 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'paste', function (e) {
-              
-                console.log(e.data, e.dataTypes)
-                console.log((e.clipboardData || window.clipboardData).getData("text"),(e.clipboardData || window.clipboardData).types)
-                console.log((e.clipboardData || window.clipboardData).getData("text/html"))
-
-                    // e.preventDefault();
+                    e.preventDefault();
 
                     let copiedData = (e.clipboardData || window.clipboardData).getData("text");
 
