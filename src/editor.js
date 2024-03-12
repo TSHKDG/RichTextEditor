@@ -749,7 +749,9 @@ function createHTML(options = {}) {
 
                     if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
                         copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
+                        console.log(copiedData)
                         copiedData = copiedData.replace('<!DOCTYPE html><meta charset="UTF-8">', '');
+                        console.log(copiedData)
                     }
 
                     //creating node element - div, and setting for its our copied data as a chiled
