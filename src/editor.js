@@ -739,7 +739,7 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'copy', function (e) {
-                console.log(e.clipboardData, e.dataType, e.data)
+                console.log((e.clipboardData || window.clipboardData).getData("text"),(e.clipboardData || window.clipboardData).types)
                 console.log((e.clipboardData || window.clipboardData).getData("text/html"))
             });
             addEventListener(content, 'paste', function (e) {
