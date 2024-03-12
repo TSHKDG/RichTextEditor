@@ -738,6 +738,9 @@ function createHTML(options = {}) {
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
+            addEventListener(content, 'copy', function (e) {
+                console.log(e)
+            });
             addEventListener(content, 'paste', function (e) {
               
 
@@ -745,13 +748,8 @@ function createHTML(options = {}) {
 
                     let copiedData = (e.clipboardData || window.clipboardData).getData("text");
 
-                    console.log((e.clipboardData || window.clipboardData).types, (e.clipboardData || window.clipboardData).types.includes("text/html"))
-
                     if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
                         copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
-                        console.log(copiedData)
-                        copiedData = copiedData.replace('<!DOCTYPE html><meta charset="UTF-8">', '');
-                        console.log(copiedData)
                     }
 
                     //creating node element - div, and setting for its our copied data as a chiled
