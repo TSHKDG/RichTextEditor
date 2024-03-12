@@ -738,14 +738,13 @@ function createHTML(options = {}) {
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
-            addEventListener(content, 'copy', function (e) {
-                console.log((e.clipboardData || window.clipboardData).getData("text"),(e.clipboardData || window.clipboardData).types)
-                console.log((e.clipboardData || window.clipboardData).getData("text/html"))
-            });
             addEventListener(content, 'paste', function (e) {
               
+                console.log(e.data, e.dataTypes)
+                console.log((e.clipboardData || window.clipboardData).getData("text"),(e.clipboardData || window.clipboardData).types)
+                console.log((e.clipboardData || window.clipboardData).getData("text/html"))
 
-                    e.preventDefault();
+                    // e.preventDefault();
 
                     let copiedData = (e.clipboardData || window.clipboardData).getData("text");
 
