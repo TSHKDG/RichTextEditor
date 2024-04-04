@@ -761,34 +761,37 @@ function createHTML(options = {}) {
                     const links = container.getElementsByTagName('a');
                     
                     anchorTags.forEach((aTag) => {
-                        //uuid creator, because we can not import libraries here, for that we created some features by hand
-                        const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                            const r = Math.random() * 16 | 0;
-                            const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                            return v.toString(16);
-                          });
-                        //chnaging "front_id" and "id" attributes
-                        aTag.setAttribute("id", newUUID);
-                        let currentFrontID =  aTag.getAttribute("front_id");
-                        for (let i = 0; i < links.length; i++) {
-                            let frontID =  links[i].getAttribute('front_id')
-                            if(currentFrontID === frontID){
-                                aTag.setAttribute("front_id", newUUID);
+                        if(aTag.getAttribute("id")){
+                            //uuid creator, because we can not import libraries here, for that we created some features by hand
+                            const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                                const r = Math.random() * 16 | 0;
+                                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                                return v.toString(16);
+                              });
+                            //chnaging "front_id" and "id" attributes
+                            aTag.setAttribute("id", newUUID);
+                            let currentFrontID =  aTag.getAttribute("front_id");
+                            for (let i = 0; i < links.length; i++) {
+                                let frontID =  links[i].getAttribute('front_id')
+                                if(currentFrontID === frontID){
+                                    aTag.setAttribute("front_id", newUUID);
+                                }
                             }
+                           // aTag.parentNode.removeChild(aTag);
                         }
-                       // aTag.parentNode.removeChild(aTag);
-
                     });
 
                     //the same manipulation for tables, here we have only "id"
                     tableTags.forEach((tableTag) => {
-                        
-                        const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                            const r = Math.random() * 16 | 0;
-                            const v = c === 'x' ? r : (r & 0x3 | 0x8);
-                            return v.toString(16);
-                          });
-                        tableTag.setAttribute("id", newUUID);
+                        if(tableTag.getAttribute("id"))
+                        {    
+                            const newUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                                const r = Math.random() * 16 | 0;
+                                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                                return v.toString(16);
+                            });
+                            tableTag.setAttribute("id", newUUID);
+                        }
 
                     });
                     
