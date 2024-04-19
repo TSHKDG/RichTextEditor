@@ -684,33 +684,42 @@ function createHTML(options = {}) {
                   });
 
 //table
-                if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
-                    if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
-                       
+                if (event.target.closest('table')) {
+                    const table = event.target.closest('table');
+                    if (table.id) {
                         newInfo = {
                             status: true,
-                            data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
+                            data: table.getAttribute('id')
                         }
-                    }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
-
-
-                        newInfo = {
-                            status: true,
-                            data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
-                        }  
-                    }
+                    } 
                 }
+                // if((ele.parentNode.parentNode.nodeName === 'TBODY') || (ele.parentNode.parentNode.nodeName === 'TR')){
+                //     if(ele.parentNode?.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
+                       
+                //         newInfo = {
+                //             status: true,
+                //             data: ele.parentNode.parentNode.parentNode.parentNode.getAttribute('id')
+                //         }
+                //     }else if(ele.parentNode?.parentNode?.parentNode?.getAttribute('id')?.length > 10){
+
+
+                //         newInfo = {
+                //             status: true,
+                //             data: ele.parentNode?.parentNode?.parentNode?.getAttribute('id')
+                //         }  
+                //     }
+                // }
                 postAction({type: 'FIND_TABLE', data: newInfo});
 
 //input 
-                if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
-                    // Set whether the checkbox is selected by default
-                    if (ele.checked) ele.setAttribute('checked', '');
-                    else ele.removeAttribute('checked');
-                }
-                if(ele.nodeName === 'INPUT' && ele.type === 'button'){
-                    postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
-                }
+                // if (ele.nodeName === 'INPUT' && ele.type === 'checkbox'){
+                //     // Set whether the checkbox is selected by default
+                //     if (ele.checked) ele.setAttribute('checked', '');
+                //     else ele.removeAttribute('checked');
+                // }
+                // if(ele.nodeName === 'INPUT' && ele.type === 'button'){
+                //     postAction({type: 'LINK_TOUCHED', data: ele.getAttribute('data')});
+                // }
 
 //link
                 if ((ele.nodeName === 'A' || ele.parentNode?.nodeName === 'A') && (ele.getAttribute('href')|| ele.parentNode?.getAttribute('href'))) {
