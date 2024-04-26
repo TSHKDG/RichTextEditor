@@ -747,11 +747,7 @@ function createHTML(options = {}) {
             addEventListener(content, 'click', handleClick);
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
-            addEventListener(content, 'focus', handleFocus);
-            addEventListener(content, 'copy', function(e) {
-                console.log(e)
-            });
-        
+            addEventListener(content, 'focus', handleFocus);        
             addEventListener(content, 'paste', function (e) {
               
 
