@@ -749,23 +749,24 @@ function createHTML(options = {}) {
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
             addEventListener(content, 'copy', function(e) {
-                const selection = document.getSelection();
-                if (selection.toString().length > 0) {
-                    lastCopiedText = selection.toString();
-                }
+                console.log(e)
             });
         
             addEventListener(content, 'paste', function (e) {
               
-                e.preventDefault();
 
-                let copiedData = (e.clipboardData || window.clipboardData).getData("text");
-                const newElement = document.createElement('div');
+                    e.preventDefault();
 
-                if (copiedData === lastCopiedText && (e.clipboardData || window.clipboardData).types.includes("text/html")) {
-                    
-                    copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
+                    let copiedData = (e.clipboardData || window.clipboardData).getData("text");
+
+                    if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
+                        copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
+                    }
+
+                    //creating node element - div, and setting for its our copied data as a chiled
+                    const newElement = document.createElement('div');
                     newElement.innerHTML = copiedData
+
                     //finding all <a> & <table> tags for manipulation
                     const anchorTags = newElement.querySelectorAll('a');
                     const tableTags = newElement.querySelectorAll('table')
@@ -807,25 +808,22 @@ function createHTML(options = {}) {
                         }
 
                     });
-                } else {
-                    newElement?.innerHTML = copiedData
-                }
+                    
+                    //using selection delete all selected node and elements
+                    const selection = window.getSelection();
+                    if (!selection.rangeCount) return;
+                    selection.deleteFromDocument();
 
-                //using selection delete all selected node and elements
-                const selection = window.getSelection();
-                if (!selection.rangeCount) return;
-                selection.deleteFromDocument();
+                    //insert copied node and elements
+                    selection.getRangeAt(0).insertNode(newElement);
 
-                //insert copied node and elements
-                selection.getRangeAt(0).insertNode(newElement);
+                    //clear selection
+                    selection.collapseToEnd()
 
-                //clear selection
-                selection.collapseToEnd()
+                    //inserting empty text, because we want to catch this action, it has not message poster 
+                    exec('insertHTML', '')
 
-                //inserting empty text, because we want to catch this action, it has not message poster 
-                exec('insertHTML', '')
-
-                postAction({type: 'CONTENT_PASTED', data: newElement?.innerHTML||''})
+                    postAction({type: 'CONTENT_PASTED', data: newElement?.innerHTML||''})
 
             });
             addEventListener(content, 'compositionstart', function(event){
