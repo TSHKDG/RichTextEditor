@@ -76,6 +76,7 @@ function createHTML(options = {}) {
         var _log = console.log;
         var placeholderColor = '${placeholderColor}';
         var _randomID = 99;
+        let lastCopiedText = ''
         var generateId = function (){
             return "auto_" + (++ _randomID);
         }
@@ -689,7 +690,7 @@ function createHTML(options = {}) {
                     if (table.id) {
                         newInfo = {
                             status: true,
-                            data: table.getAttribute('id')
+                            data: table.id
                         }
                     } 
                 }
@@ -747,21 +748,24 @@ function createHTML(options = {}) {
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
+            addEventListener(content, 'copy', function(e) {
+                const selection = document.getSelection();
+                if (selection.toString().length > 0) {
+                    lastCopiedText = selection.toString();
+                }
+            });
+        
             addEventListener(content, 'paste', function (e) {
               
+                e.preventDefault();
 
-                    e.preventDefault();
+                let copiedData = (e.clipboardData || window.clipboardData).getData("text");
+                const newElement = document.createElement('div');
 
-                    let copiedData = (e.clipboardData || window.clipboardData).getData("text");
-
-                    if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
-                        copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
-                    }
-
-                    //creating node element - div, and setting for its our copied data as a chiled
-                    const newElement = document.createElement('div');
+                if (copiedData === lastCopiedText && (e.clipboardData || window.clipboardData).types.includes("text/html")) {
+                    
+                    copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
                     newElement.innerHTML = copiedData
-
                     //finding all <a> & <table> tags for manipulation
                     const anchorTags = newElement.querySelectorAll('a');
                     const tableTags = newElement.querySelectorAll('table')
@@ -803,22 +807,25 @@ function createHTML(options = {}) {
                         }
 
                     });
-                    
-                    //using selection delete all selected node and elements
-                    const selection = window.getSelection();
-                    if (!selection.rangeCount) return;
-                    selection.deleteFromDocument();
+                } else {
+                    newElement?.innerHTML = copiedData
+                }
 
-                    //insert copied node and elements
-                    selection.getRangeAt(0).insertNode(newElement);
+                //using selection delete all selected node and elements
+                const selection = window.getSelection();
+                if (!selection.rangeCount) return;
+                selection.deleteFromDocument();
 
-                    //clear selection
-                    selection.collapseToEnd()
+                //insert copied node and elements
+                selection.getRangeAt(0).insertNode(newElement);
 
-                    //inserting empty text, because we want to catch this action, it has not message poster 
-                    exec('insertHTML', '')
+                //clear selection
+                selection.collapseToEnd()
 
-                    postAction({type: 'CONTENT_PASTED', data: newElement?.innerHTML||''})
+                //inserting empty text, because we want to catch this action, it has not message poster 
+                exec('insertHTML', '')
+
+                postAction({type: 'CONTENT_PASTED', data: newElement?.innerHTML||''})
 
             });
             addEventListener(content, 'compositionstart', function(event){
