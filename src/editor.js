@@ -763,7 +763,8 @@ function createHTML(options = {}) {
                     var tempDiv = document.createElement('div');
     
                     // Clone the selected range into the temporary div
-                    tempDiv.appendChild(range.cloneContents());
+                    const datAA = range?.cloneContents()
+                    tempDiv.appendChild(datAA);
     
                     // Get the HTML content of the temporary div
                     var selectedHTML = tempDiv.innerHTML;
