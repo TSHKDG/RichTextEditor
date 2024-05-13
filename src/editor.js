@@ -773,7 +773,7 @@ function createHTML(options = {}) {
                 }catch ({message}){
                     console.log(message)
                 }
-            }        
+            };   
             addEventListener(content, 'paste', function (e) {
               
 
