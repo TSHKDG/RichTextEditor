@@ -748,19 +748,20 @@ function createHTML(options = {}) {
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
-            addEventListener(content, 'copy', function (event) {
+            addEventListener(content, 'copy', function (e) {
         
-                var selection = window.getSelection ? window.getSelection() : document.selection.createRange();
-    
-                var range = selection.getRangeAt ? selection.getRangeAt(0) : selection;
-    
-                var tempDiv = document.createElement('div');
-    
-                tempDiv.appendChild(range.cloneContents());
-    
-                var selectedHTML = tempDiv.innerHTML;
-    
-                console.log('Selected HTML:', selectedHTML);
+                e.preventDefault();
+
+                let copiedData = (e.clipboardData || window.clipboardData).getData("text");
+
+                if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
+                    copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
+                }
+
+                //creating node element - div, and setting for its our copied data as a chiled
+                const newElement = document.createElement('div');
+                newElement.innerHTML = copiedData
+                console.log(newElement.innerHTML)
             };   
             addEventListener(content, 'paste', function (e) {
               
