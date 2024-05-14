@@ -748,31 +748,31 @@ function createHTML(options = {}) {
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
-            addEventListener(content, 'copy', function (event) {
-                if (event.preventDefault) {
-                    event.preventDefault();
-                } else {
-                    event.returnValue = false;
-                }
+            // addEventListener(content, 'copy', function (event) {
+            //     if (event.preventDefault) {
+            //         event.preventDefault();
+            //     } else {
+            //         event.returnValue = false;
+            //     }
     
-                // Get the selected range in IE and other browsers
-                var selection = window.getSelection ? window.getSelection() : document.selection.createRange();
+            //     // Get the selected range in IE and other browsers
+            //     var selection = window.getSelection ? window.getSelection() : document.selection.createRange();
     
-                // Create a range object to contain the selected content
-                var range = selection.getRangeAt ? selection.getRangeAt(0) : selection;
+            //     // Create a range object to contain the selected content
+            //     var range = selection.getRangeAt ? selection.getRangeAt(0) : selection;
     
-                // Create a temporary div to hold the selected content
-                var tempDiv = document.createElement('div');
+            //     // Create a temporary div to hold the selected content
+            //     var tempDiv = document.createElement('div');
     
-                // Clone the selected range into the temporary div
-                tempDiv.appendChild(range.cloneContents());
+            //     // Clone the selected range into the temporary div
+            //     tempDiv.appendChild(range.cloneContents());
     
-                // Get the HTML content of the temporary div
-                var selectedHTML = tempDiv.innerHTML;
+            //     // Get the HTML content of the temporary div
+            //     var selectedHTML = tempDiv.innerHTML;
     
-                // Log or use the selected HTML content as needed
-                console.log('Selected HTML:', selectedHTML);
-            };   
+            //     // Log or use the selected HTML content as needed
+            //     console.log('Selected HTML:', selectedHTML);
+            // };   
             addEventListener(content, 'paste', function (e) {
               
 
