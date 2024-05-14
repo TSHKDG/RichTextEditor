@@ -841,6 +841,25 @@ function createHTML(options = {}) {
                     //clear selection
                     selection.collapseToEnd()
 
+                   
+                    //remove unused styles
+                    var contentElement = document.getElementById('content');
+                    var htmlContent = contentElement.innerHTML;
+        
+                    // Regular expressions to find and remove specific styles
+                    // This regex will match the exact string for font-family and background-color
+                    var fontFamilyRegex = /font-family:\s*Arial,\s*Helvetica,\s*sans-serif;\s*/gi;
+                    var backgroundColorRegex = /background-color:\s*rgb\(255,\s*255,\s*255\);\s*/gi;
+        
+                    // Replace the matching style strings with empty string
+                    htmlContent = htmlContent.replace(fontFamilyRegex, '');
+                    htmlContent = htmlContent.replace(backgroundColorRegex, '');
+        
+                    // Set the modified HTML back to the element
+                    contentElement.innerHTML = htmlContent;
+                
+                
+
                     //inserting empty text, because we want to catch this action, it has not message poster 
                     exec('insertHTML', '')
 
