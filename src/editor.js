@@ -594,14 +594,15 @@ function createHTML(options = {}) {
             function handleSelecting(event){
                 const selection = window.getSelection();
                 const container = document.getElementById('content');
-                const links = container.getElementsByTagName('a');
+                console.log(container.outerHTML)
+                // const links = container.getElementsByTagName('a');
 
-                for (let i = 0; i < links.length; i++) {
-                    let link = links[i]
-                    if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
-                        selection.addRange(createRange(link));
-                    }
-                }
+                // for (let i = 0; i < links.length; i++) {
+                //     let link = links[i]
+                //     if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
+                //         selection.addRange(createRange(link));
+                //     }
+                // }
 
                 event.stopPropagation();
                 handleState();
@@ -748,21 +749,6 @@ function createHTML(options = {}) {
             addEventListener(content, 'keydown', handleKeydown);
             addEventListener(content, 'blur', handleBlur);
             addEventListener(content, 'focus', handleFocus);
-            addEventListener(content, 'copy', function (e) {
-        
-                e.preventDefault();
-
-                let copiedData = (e.clipboardData || window.clipboardData).getData("text");
-
-                if ((e.clipboardData || window.clipboardData).types.includes("text/html")) {
-                    copiedData = (e.clipboardData || window.clipboardData).getData("text/html");
-                }
-
-                //creating node element - div, and setting for its our copied data as a chiled
-                const newElement = document.createElement('div');
-                newElement.innerHTML = copiedData
-                console.log(newElement.innerHTML)
-            };   
             addEventListener(content, 'paste', function (e) {
               
 
