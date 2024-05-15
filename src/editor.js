@@ -596,16 +596,29 @@ function createHTML(options = {}) {
             function handleSelecting(event){
                 const selection = window.getSelection();
                 const container = document.getElementById('content');
-                selectedDataForCopy = container.innerHTML
+                selectedDataForCopy = container.innerHTML;
                 const links = container.getElementsByTagName('a');
-
+            
+                if (!selection.rangeCount) {
+                    return;
+                }
+            
+                let range = selection.getRangeAt(0);
+                const newRange = document.createRange();
+            
                 for (let i = 0; i < links.length; i++) {
-                    let link = links[i]
+                    let link = links[i];
+            
                     if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
-                        selection.addRange(createRange(link));
+                        newRange.setStartBefore(link);
+                        newRange.setEndAfter(link);
+            
+                        // Adjust the selection to include the full link
+                        selection.removeAllRanges();
+                        selection.addRange(newRange);
                     }
                 }
-
+            
                 event.stopPropagation();
                 handleState();
             }
