@@ -605,20 +605,19 @@ function getContentCSS() {
                   }
                   selectedDataForCopy = tempDiv.innerHTML;
                   
-                //   const links = container.getElementsByTagName('a');
+                  const links = container.getElementsByTagName('a');
   
-                //   for (let i = 0; i < links.length; i++) {
-                //       let link = links[i]
-                //       if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
+                  for (let i = 0; i < links.length; i++) {
+                      let link = links[i]
+                      if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
   
-                //           const range = document.createRange();
-                //           range.setStartBefore(link); // Set the start of the range before the link
-                //           range.setEndAfter(link); // Set the end of the range after the link
-                //           selection.addRange(range);
-                //           selection.removeAllRanges(); // Clear existing selection
+                          const range = document.createRange();
+              range.setStartBefore(link); // Set the start of the range before the link
+              range.setEndAfter(link); // Set the end of the range after the link
+              selection.addRange(range);
                    
-                //       }
-                //   }
+                      }
+                  }
   
                   event.stopPropagation();
                   handleState();
@@ -760,8 +759,6 @@ function getContentCSS() {
               addEventListener(content, 'blur', handleBlur);
               addEventListener(content, 'focus', handleFocus);
               addEventListener(content, 'paste', function (e) {
-                
-  
                       e.preventDefault();
   
                       let copiedData = (e.clipboardData || window.clipboardData).getData("text");
@@ -820,22 +817,20 @@ function getContentCSS() {
                       const selection = window.getSelection();
                       if (!selection.rangeCount) return;
                       selection.deleteFromDocument();
-  
+                      
                       //insert copied node and elements
                       selection.getRangeAt(0).insertNode(newElement);
-  
+                      
                       //clear selection
                       selection.collapseToEnd()
-          
+                      
                       // Set the modified HTML back to the element
-                      contentElement.innerHTML = htmlContent;
-                  
-                  
+                      // contentElement.innerHTML = htmlContent;
   
-                      //inserting empty text, because we want to catch this action, it has not message poster 
-                      exec('insertHTML', '')
-  
-                      postAction({type: 'CONTENT_PASTED', data: newElement?.innerHTML||''})
+                      //inserting empty text, because we want to catch this action, it has not message "poster" 
+                      // exec('insertHTML', '')
+                      
+                      postAction({type: 'CONTENT_CHANGE', data: newElement?.innerHTML||''})
   
               });
               addEventListener(content, 'copy', function(event){
@@ -850,6 +845,7 @@ function getContentCSS() {
                   const range = selection.getRangeAt(0);
                   range.deleteContents();
               })
+  
               addEventListener(content, 'compositionstart', function(event){
                   compositionStatus = 1;
               })
