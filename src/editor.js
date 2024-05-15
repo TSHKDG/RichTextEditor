@@ -81,6 +81,8 @@ function createHTML(options = {}) {
             return "auto_" + (++ _randomID);
         }
 
+        let selectedDataForCopy = ''
+
         var body = document.body, docEle = document.documentElement;
         var defaultParagraphSeparatorString = 'defaultParagraphSeparator';
         var formatBlock = 'formatBlock';
@@ -594,15 +596,15 @@ function createHTML(options = {}) {
             function handleSelecting(event){
                 const selection = window.getSelection();
                 const container = document.getElementById('content');
-                console.log(container.outerHTML)
-                // const links = container.getElementsByTagName('a');
+                selectedDataForCopy = container.innerHTML
+                const links = container.getElementsByTagName('a');
 
-                // for (let i = 0; i < links.length; i++) {
-                //     let link = links[i]
-                //     if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
-                //         selection.addRange(createRange(link));
-                //     }
-                // }
+                for (let i = 0; i < links.length; i++) {
+                    let link = links[i]
+                    if (selection.containsNode(link, true) && !!link.getAttribute('id')) {
+                        selection.addRange(createRange(link));
+                    }
+                }
 
                 event.stopPropagation();
                 handleState();
@@ -816,20 +818,6 @@ function createHTML(options = {}) {
 
                     //clear selection
                     selection.collapseToEnd()
-
-                   
-                    //remove unused styles
-                    var contentElement = document.getElementById('content');
-                    var htmlContent = contentElement.innerHTML;
-        
-                    // Regular expressions to find and remove specific styles
-                    // This regex will match the exact string for font-family and background-color
-                    var fontFamilyRegex = /font-family:\s*Arial,\s*Helvetica,\s*sans-serif;\s*/gi;
-                    var backgroundColorRegex = /background-color:\s*rgb\(255,\s*255,\s*255\);\s*/gi;
-        
-                    // Replace the matching style strings with empty string
-                    htmlContent = htmlContent.replace(fontFamilyRegex, '');
-                    htmlContent = htmlContent.replace(backgroundColorRegex, '');
         
                     // Set the modified HTML back to the element
                     contentElement.innerHTML = htmlContent;
@@ -842,6 +830,18 @@ function createHTML(options = {}) {
                     postAction({type: 'CONTENT_PASTED', data: newElement?.innerHTML||''})
 
             });
+            addEventListener(content, 'copy', function(event){
+                event.preventDefault();
+                event.clipboardData.setData('text/plain', selectedDataForCopy);
+            })
+            addEventListener(content, 'cut', function(event){
+                event.preventDefault();
+                event.clipboardData.setData('text/plain', selectedDataForCopy);
+
+                const selection = window.getSelection();
+                const range = selection.getRangeAt(0);
+                range.deleteContents();
+            })
             addEventListener(content, 'compositionstart', function(event){
                 compositionStatus = 1;
             })
